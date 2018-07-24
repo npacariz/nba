@@ -25,10 +25,15 @@
                     <a class="navbar-brand" href="#">WebSiteName</a>
                   </div>
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Page 1</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <li><a href="/">Home</a></li>
+                   
+                    @if(auth()->check())
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="">{{auth()->user()->name }}</a></li>
+                    @else
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    @endif
                   </ul>
                 </div>
               </nav>
