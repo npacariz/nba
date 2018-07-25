@@ -21,7 +21,7 @@ class TeamController extends Controller
 
     public function show() 
     {
-        $team = Team::with('players')->first();
+        $team = Team::with('players', 'comments', 'comments.user')->first();
         
        return view('pages.show', compact('team'));
     }

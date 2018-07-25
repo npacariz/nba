@@ -5,3 +5,13 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
   }
+
+  .flexbox{
+    display: flex;  
+    align-items: baseline;
+    
+  }
+
+.item{
+  margin-left: 15%;
+}

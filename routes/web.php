@@ -22,3 +22,5 @@ Route::get('/register', 'RegistrationController@create');
 Route::post('/login', 'SessionController@store');
 Route::get('/login', 'SessionController@create')->name('login');
 Route::get('/logout', 'SessionController@destroy');
+
+Route::post('/comment/{team}/create', 'CommentController@store');
