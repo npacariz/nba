@@ -3,6 +3,11 @@
 
 @section('content')
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            <h4>{{ session('success') }} </h4>    
+        </div>
+    @endif
     <div class="list-group">
         @foreach($teams as $team)
 

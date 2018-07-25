@@ -4,7 +4,11 @@
 @section('content')
 
     <h1>Login: </h1>
-
+    @if (session('message'))
+        <div class="alert alert-success">
+            <h4>{{ session('message') }} </h4>    
+        </div>
+    @endif
     <form action="/login" method="POST">
         {{csrf_field()}}    
         <div class="form-group">
@@ -20,5 +24,6 @@
         <button type="submit" class="btn btn-default">Submit</button>
         @include('partials.errors',['field' => 'message'])
     </form>
-
 @endsection
+
+    

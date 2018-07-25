@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Mail\VerificationEmail;
+
+
+
 class RegistrationController extends Controller
 {
     public function __construct()
@@ -19,22 +23,40 @@ class RegistrationController extends Controller
 
     public function store()
     {
+         
+
         $this->validate(request(),[
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|confirmed|min:6'
         ]);
 
         $user = User::create([
 
             'name' => request('name'),
             'email' => request('email'),
-            'password' => bcrypt(request('password'))
-
+            'password' => bcrypt(request('password')),
+            'token' => str_random(40)
         ]);       
-    
-        auth()->login($user);
+            
+        \Mail::to($user->email)->send(new VerificationEmail($user));
 
-        return redirect('/');
+        return redirect('/login')->with('message', 'Visit email to confirm account');
+    }
+
+
+    public function verify(User $user, $token)
+    {
+       
+        if($token === $user->token) {
+            $user->update([
+                'is_verified' => 1,
+                'token' => null
+            ]);
+            auth()->login($user);
+            return redirect('/')->with('success', 'Account is confirmed');
+        }
+     
+        return redirect('/login')->with('message', 'Visit email to confirm account');
     }
 }

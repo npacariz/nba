@@ -18,9 +18,14 @@
             @include('partials.errors',['field' => 'email'])
         </div>
         <div class="form-group">
-            <label for="pwd">Password:</label>
+            <label for="password">Password:</label>
             <input type="password" class="form-control" name='password' id="password">
             @include('partials.errors',['field' => 'password'])
+        </div>
+        <div class="form-group">
+            <label for="password_confirmation">password Confirm:</label>
+            <input type="password" class="form-control" name='password_confirmation' id="password_confirmation">
+            @include('partials.errors',['field' => 'password-confirm'])
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
