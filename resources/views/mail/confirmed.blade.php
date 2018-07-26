@@ -8,12 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h5>
-        "Hello {{$user->name}}, click on link blow  to confirme you account"
-    </h5>
-    <h6>
+    <div class="jumbotron">
+        <h1> "Hello {{$user->name}}, click on link blow  to confirme you account"</h1> 
         <a href="{{ url('/confirme/'.$user->id.'/'.$user->token)}}"> Confirm your account</a>
-    </h6>
+    </div>
+
 </body>
 </html>
 
