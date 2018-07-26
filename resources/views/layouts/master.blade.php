@@ -26,10 +26,11 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-
+                <li><a href="/news">News</a></li>
                 @if(auth()->check())
                   <li><a href="/logout" >Logout</a></li>
                   <li><a href="">{{auth()->user()->name }}</a></li>
+                 
                 @else
                   <li><a href="/register">Register</a></li>
                   <li><a href="/login">Login</a></li>

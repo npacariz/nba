@@ -29,3 +29,5 @@ Route::get('/logout', 'SessionController@destroy');
 Route::post('/comment/{team}/create', 'CommentController@store');
 Route::get('/forbidden', 'CommentController@show');
 
+Route::get('/news', 'NewsController@index');
+Route::get('/news/{id}', 'NewsController@show');
