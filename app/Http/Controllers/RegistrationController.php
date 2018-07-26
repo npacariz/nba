@@ -56,6 +56,7 @@ class RegistrationController extends Controller
             ]);
          
           return redirect('/login')->with('message', 'Account is confirmed');
+          
         }else if($user->is_verified) {
 
             return redirect('/login')->with('message', 'This account has already been confirmed');
