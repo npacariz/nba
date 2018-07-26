@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\News;
+use App\Team;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $news = \App\News::with('user')->paginate(10);
+        $news = \App\News::with('user')->latest()->paginate(10);
 
         return view('news.index', compact('news'));
     }
@@ -20,5 +21,14 @@ class NewsController extends Controller
 
         return view('news.show', compact('news'));
     
+    }
+
+    public function teamNews($name)
+    {
+      
+        $team = \App\Team::with('news')->where('name', $name)->latest()->paginate(2);;
+        
+        
+        return view('news.team-news', compact('team'));
     }
 }

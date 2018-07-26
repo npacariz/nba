@@ -31,3 +31,5 @@ Route::get('/forbidden', 'CommentController@show');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@show');
+
+Route::get('/news/team/{name}', 'NewsController@teamNews');
