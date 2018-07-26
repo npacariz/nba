@@ -53,8 +53,12 @@ class RegistrationController extends Controller
                 'is_verified' => 1,
                 'token' => null
             ]);
-            auth()->login($user);
-            return redirect('/')->with('success', 'Account is confirmed');
+          //  auth()->login($user);
+          return redirect('/login')->with('message', 'Account is confirmed');
+        }else if($user->is_verified) {
+
+            return redirect('/login')->with('message', 'This account has already been confirmed');
+            
         }
      
         return redirect('/login')->with('message', 'Visit email to confirm account');

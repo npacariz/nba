@@ -7,6 +7,10 @@ use App\Team;
 use App\Create;
 class CommentController extends Controller
 {
+    public function __construct() {
+        $this->middleware('checkComment')->only('store');
+    }
+
    public function store(Team $team) {
 
     $this->validate(request(),[
@@ -23,6 +27,11 @@ class CommentController extends Controller
     return redirect('/teams/'.$team->id);
 
 
+   }
+
+   public function show() {
+
+        return view('forbidden.forbidden-comment');
    }
     
 }

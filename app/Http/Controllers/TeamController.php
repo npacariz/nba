@@ -9,6 +9,8 @@ class TeamController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
+        
     
     }
 
@@ -19,9 +21,9 @@ class TeamController extends Controller
        return view('pages.index', compact('teams'));
     }
 
-    public function show() 
+    public function show(Team $team) 
     {
-        $team = Team::with('players', 'comments', 'comments.user')->first();
+        $team->with('players', 'comments', 'comments.user')->first();
         
        return view('pages.show', compact('team'));
     }

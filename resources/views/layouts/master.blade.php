@@ -28,11 +28,13 @@
                     <li><a href="/">Home</a></li>
                    
                     @if(auth()->check())
-                    <li><a href="/logout">Logout</a></li>
+                    <div class='mr'>
+                    <li><a href="/logout" >Logout</a></li>
                     <li><a href="">{{auth()->user()->name }}</a></li>
                     @else
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Login</a></li>
+                   </div>
                     @endif
                   </ul>
                 </div>

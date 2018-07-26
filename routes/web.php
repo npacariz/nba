@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'TeamController@index')->name('home');
-Route::get('/teams/{id}', 'TeamController@show');
+Route::get('/teams/{team}', 'TeamController@show');
 
 Route::get('/players/{player}', 'PlayerController@show');
 
@@ -27,5 +27,5 @@ Route::get('/logout', 'SessionController@destroy');
 
 
 Route::post('/comment/{team}/create', 'CommentController@store');
-
+Route::get('/forbidden', 'CommentController@show');
 
