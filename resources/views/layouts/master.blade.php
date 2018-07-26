@@ -19,34 +19,34 @@
   </head>
 
   <body>
-        <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                  <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteName</a>
-                  </div>
-                  <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                   
-                    @if(auth()->check())
-                    <div class='mr'>
-                    <li><a href="/logout" >Logout</a></li>
-                    <li><a href="">{{auth()->user()->name }}</a></li>
-                    @else
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Login</a></li>
-                   </div>
-                    @endif
-                  </ul>
-                </div>
-              </nav>
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+
+                @if(auth()->check())
+                  <li><a href="/logout" >Logout</a></li>
+                  <li><a href="">{{auth()->user()->name }}</a></li>
+                @else
+                  <li><a href="/register">Register</a></li>
+                  <li><a href="/login">Login</a></li>
+                  @endif
+            </ul>
+        </div>
+          
+
+      </nav>
 
     <main role="main" class="container">
 
-     
-        @yield('content')
-    
+
+    @yield('content')
+
 
     </main><!-- /.container -->
 
-  </body>
+</body>
 </html>

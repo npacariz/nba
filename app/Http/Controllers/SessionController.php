@@ -10,6 +10,8 @@ class SessionController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('destroy');
+        $this->middleware('verifyUser')->only('store');
+        
     }
     public function create()
     {
@@ -19,13 +21,6 @@ class SessionController extends Controller
     public function store()
     {
      
-    
-        $this->validate( request(),[
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-           
-
         $credentials = request()->only(['email', 'password']);
     
         if(!auth()->attempt($credentials))
@@ -34,10 +29,7 @@ class SessionController extends Controller
                 'message' => 'Bad credentials. Please try again!',
             ]);
         }
-        if (!auth()->user()->is_verified) {
-            auth()->logout();
-            return back()->with('message', 'You need to confirm your account. We have sent you an activation code, please check your email.');
-        } 
+       
       
         return redirect('/');
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use Closure;
 use App\User;
 
-class IsUserVerifyMiddleware
+class VerifyUser extends Controller
 
 {
     /**
@@ -18,9 +20,15 @@ class IsUserVerifyMiddleware
     public function handle($request, Closure $next)
     {
         
-        $user = User::where('email', $request->email)->first();
-       
-        if (!$user['is_verified']) {
+             
+       $this->validate( request(),[
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('email', $request->email)->get('is_verified');
+       dd($user);
+        if (!$user->is_verified) {
             return redirect('/login')->with('message', 'You need to confirm your account. We have sent you an activation code, please check your email.');
         }
 

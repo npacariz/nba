@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\User;
 use App\Mail\VerificationEmail;
 
@@ -53,7 +54,7 @@ class RegistrationController extends Controller
                 'is_verified' => 1,
                 'token' => null
             ]);
-          //  auth()->login($user);
+         
           return redirect('/login')->with('message', 'Account is confirmed');
         }else if($user->is_verified) {
 

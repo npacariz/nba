@@ -16,15 +16,10 @@ class CheckComments
     public function handle($request, Closure $next)
     {
         $comments = strtolower(request('content'));
-        $comments = explode(" ",$comments);
-        $words = ['hate', 'idiot', 'stupid'];
-        
-        foreach($words as $word){
-            if(in_array($word, $comments)) {
-                return redirect('/forbidden');
-            }
+    
+        if(preg_match('/\b(hate)\b|\b(idiot)\b|\b(stupid)\b/', $comments)){
+            return redirect('/forbidden');
         }
-       
         return $next($request);
     }
 }
