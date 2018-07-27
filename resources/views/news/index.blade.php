@@ -2,7 +2,11 @@
 
 
 @section('content')
-
+        @if(session()->has('success'))
+            <div class='alert alert-success'>
+            <strong>{{session()->get('success')}}</strong>
+            </div>
+        @endif
     <div class="list-group">
         <h1>News: </h1>
        

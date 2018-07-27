@@ -23,6 +23,12 @@ class NewsController extends Controller
     
     }
 
+    public function create()
+    {
+        $teams = Team::all();
+        return view('news.create', compact('teams'));
+    }
+
     public function teamNews($name)
     {
       
@@ -31,4 +37,27 @@ class NewsController extends Controller
      
         return view('news.team-news', compact('news'));
     }
+
+    public function store()
+    {
+
+        $this->validate(request(), [
+            'title' => 'required',
+            'content' => 'required',
+            'teams' => 'required|array'
+        ]);
+
+        $news = News::create([
+            'title' => request('title'),
+            'content' => request('content'),
+            'user_id' => auth()->user()->id
+        ]);
+
+        $news->teams()->attach(request('teams'));
+
+        session()->flash('success', 'Thank you for publishing article on www.nba.com.'); 
+
+        return redirect('/news');
+        
+    }   
 }
