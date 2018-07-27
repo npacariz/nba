@@ -20,21 +20,19 @@
 
   <body>
       <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/news">News</a></li>
-                <li><a href="/news/create">Create news</a></li>
+        <div class="container">
+            <ul class="nav navbar-nav ml-auto">
+               
                 @if(auth()->check())
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/news">News</a></li>
+                  <li><a href="/news/create">Create news</a></li>
                   <li><a href="/logout" >Logout</a></li>
                   <li><a href="">{{auth()->user()->name }}</a></li>
                  
-                @else
-                  <li><a href="/register">Register</a></li>
-                  <li><a href="/login">Login</a></li>
+                 @else
+                    <li><a href="/register" class='auto'>Register</a></li>
+                    <li><a href="/login">Login</a></li>
                   @endif
             </ul>
         </div>
@@ -47,11 +45,12 @@
     <div class="col-lg-8">
        @yield('content')
     </div>
-    <div class="col-ls-4 offset-sm-1 blog-sidebar">
+    @if(auth()->check())
+    <div class="col-lg-4">
         <div class="sidebar-module sidebar-module-inset">
       
         <div class="sidebar-module">
-          <h4>Teams:</h4>
+          <h4>Team news:</h4>
           <ol class="list-unstyled">
           @foreach($tags as $tag)
             <li>
@@ -63,6 +62,7 @@
       </div><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
+    @endif
     </main><!-- /.container -->
 
    
