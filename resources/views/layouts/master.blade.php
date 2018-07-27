@@ -27,6 +27,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/news">News</a></li>
+                <li><a href="/news/create">Create news</a></li>
                 @if(auth()->check())
                   <li><a href="/logout" >Logout</a></li>
                   <li><a href="">{{auth()->user()->name }}</a></li>
@@ -43,11 +44,30 @@
 
     <main role="main" class="container">
 
+    <div class="col-lg-8">
+       @yield('content')
+    </div>
+    <div class="col-ls-4 offset-sm-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+      
+        <div class="sidebar-module">
+          <h4>Teams:</h4>
+          <ol class="list-unstyled">
+          @foreach($tags as $tag)
+            <li>
+              <a href="/news/team/{{$tag->name}}">{{$tag->name}}</a>
+            </li>
+            @endforeach 
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
 
-    @yield('content')
-
-
+    </div><!-- /.row -->
     </main><!-- /.container -->
+
+   
+
+
 
 </body>
 </html>

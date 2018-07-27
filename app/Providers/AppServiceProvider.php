@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use App\Team;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('layouts.master', function($view){
+            $tags = \App\Team::all();
 
+            $view->with(compact('tags'));
+        });
     }
 
     /**
