@@ -12,7 +12,7 @@ class NewsSeeder extends Seeder
     public function run()
     {
         App\User::all()->each(function (App\User $u){
-            $u->news()->saveMany(factory(App\News::class, 5)->make());
+            $u->news()->saveMany(factory(App\News::class, 2)->make());
         });
     }
 }

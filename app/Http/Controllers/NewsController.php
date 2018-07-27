@@ -26,9 +26,9 @@ class NewsController extends Controller
     public function teamNews($name)
     {
       
-        $team = \App\Team::with('news')->where('name', $name)->latest()->paginate(2);;
-        
-        
-        return view('news.team-news', compact('team'));
+        $team = Team::where('name', $name)->first();
+        $news = $team->news()->with('teams', 'user')->latest()->paginate(5);
+     
+        return view('news.team-news', compact('news'));
     }
 }
